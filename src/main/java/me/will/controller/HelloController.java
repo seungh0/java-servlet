@@ -1,10 +1,11 @@
 package me.will.controller;
 
 import me.will.service.HelloService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class HelloController {
 
 	private final HelloService helloService;
@@ -14,8 +15,14 @@ public class HelloController {
 	}
 
 	@GetMapping("/hello")
+	@ResponseBody
 	public String hello() {
 		return "Hello" + helloService.getName();
+	}
+
+	@GetMapping("/sample")
+	public String sample() {
+		return "/WEB-INF/sample.jsp";
 	}
 
 }
