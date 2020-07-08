@@ -1,5 +1,6 @@
 package me.will;
 
+import me.will.service.HelloService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 

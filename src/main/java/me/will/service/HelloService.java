@@ -1,4 +1,4 @@
-package me.will;
+package me.will.service;
 
 import org.springframework.stereotype.Service;
 
