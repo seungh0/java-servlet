@@ -30,6 +30,7 @@ public class WebApplication implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		// WebConfig 설정 기반의 Application Context 등록
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+		context.setServletContext(servletContext);
 		context.register(WebConfig.class);
 		context.refresh();
 

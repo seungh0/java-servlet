@@ -3,10 +3,8 @@ package me.will;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -69,14 +67,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan
+@EnableWebMvc
 public class WebConfig {
-
-	@Bean
-	public HandlerMapping handlerMapping() {
-		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
-		handlerMapping.setOrder(Ordered.HIGHEST_PRECEDENCE);
-		return handlerMapping;
-	}
 
 	@Bean
 	public ViewResolver viewResolver() {
