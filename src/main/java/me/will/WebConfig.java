@@ -1,11 +1,10 @@
 package me.will;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * DispatcherServlet - Root WebApplicationContext
@@ -68,14 +67,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @ComponentScan
 @EnableWebMvc
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
-	@Bean
-	public ViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
+	/**
+	 * 빈을 등록하지 않고, 기존의 Bean에 확장하는 식으로 설정할 수 있음.
+	 * DelegatingWebMvcConfiguration.class
+	 *
+	 * 이런식으로 확장의 유용성을 위해 Delegating 방식으로 구현되어있다.
+	 */
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		registry.jsp("/WEB-INF/", ".jsp");
 	}
 
 }
